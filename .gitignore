@@ -1,6 +1,13 @@
+# enviroments variables
 .env
+
+# python cache
 __pycache__/
 tmp/
+*.pyc
+
+# migration model
+*/migrations/
 
 # SQLite database files
 *.sqlite3
