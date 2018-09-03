@@ -1,6 +1,6 @@
 .env
 __pycache__/
-
+tmp/
 
 # SQLite database files
 *.sqlite3
