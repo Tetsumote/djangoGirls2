@@ -1,35 +1,44 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col">
+    <a href="/"><button class="btn btn-outline-secondary">Back</button></a>
     <div class="post">
     {% if post.published_date %}
         <div class="name">
         {{ post.published_date }}
         </div>
     {% else %}
-        <a href="{% url 'post_publish' pk=post.pk %}"><button>Publish</button></a>
+        <a href="{% url 'post_publish' pk=post.pk %}"><button class="btn btn-outline-secondary">Publish</button></a>
     {% endif %}
-    <h1>{{ post.title }}</h1>
+    <h1 class="font-weight-light">{{ post.title }}</h1>
     <p>{{ post.text|linebreaksbr }}</p>
     </div>
     {% if user.is_authenticated %}
-        <a href="{% url 'post_edit' pk=post.pk %}"><button>Edit</button></a>
-        <a href="{% url 'post_remove' pk=post.pk %}"><button>Remove</button></a>
+        <a href="{% url 'post_edit' pk=post.pk %}"><button class="btn btn-sm btn-outline-secondary">Edit</button></a>
+        <a href="{% url 'post_remove' pk=post.pk %}"><button class="btn btn-sm btn-outline-secondary">Remove</button></a>
     {% endif %}
+    <br>
+    <h4 style="margin-top: 2rem;" class="font-weight-light">Comments:</h4>
+    <a href="{% url 'add_comment_to_post' pk=post.pk %}"><button class="btn btn-outline-secondary float-right" style="margin-top: -2.5rem;">Add comment</button></a>
     <hr>
-    <a href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
     {% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
-    <p>{{ comment.created_date }}</p>
-    <p>{{ comment.author }}</p>
-    <p>{{ comment.text|linebreaks }}</p>   
+    <p>Author: {{ comment.author }} | {{ comment.created_date }}</p>
+    <p>{{ comment.text|linebreaks }}</p>  
+
         {% if not comment.approved_comment %}
-        <hr>
-        <a href="{% url 'comment_remove' pk=comment.pk %}">remove</a>
-        <a href="{% url 'comment_approve' pk=comment.pk %}">add</a>
-        
+        <a href="{% url 'comment_approve' pk=comment.pk %}"><button class="btn btn-sm btn-outline-secondary">add</button></a>
+        <a href="{% url 'comment_remove' pk=comment.pk %}"><button class="btn btn-sm btn-outline-secondary">remove</button></a>
         {% endif %}
+      <hr>   
     {% endif %}
+    
     {% empty %}
     <p>No comments here yet :(</p>
     {% endfor %}
+    </div>
+    </div>
+</div>
 {% endblock content %}
