@@ -6,6 +6,7 @@ __pycache__/
 tmp/
 *.pyc
 .vscode
+local_settings.py
 
 # migration model
 */migrations/
