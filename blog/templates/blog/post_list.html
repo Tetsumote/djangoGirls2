@@ -8,9 +8,10 @@
             <div>
                 {% for post in posts %}
                     
-                    <h4><a href="">{{ post.title }} </a><small> | published: {{ post.published_date }}</small></h4>
+                    <h4><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a><small> | published: {{ post.published_date }}</small></h4>
                     <p> {{ post.text|linebreaksbr }} </p>
                     <a href="{% url 'post_detail' pk=post.pk %}"><button>more {{post.title}}</button></a>
+                    <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
                 {% endfor %}
             </div>
         </div>

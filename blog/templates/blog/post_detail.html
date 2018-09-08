@@ -15,4 +15,21 @@
         <a href="{% url 'post_edit' pk=post.pk %}"><button>Edit</button></a>
         <a href="{% url 'post_remove' pk=post.pk %}"><button>Remove</button></a>
     {% endif %}
+    <hr>
+    <a href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    {% for comment in post.comments.all %}
+    {% if user.is_authenticated or comment.approved_comment %}
+    <p>{{ comment.created_date }}</p>
+    <p>{{ comment.author }}</p>
+    <p>{{ comment.text|linebreaks }}</p>   
+        {% if not comment.approved_comment %}
+        <hr>
+        <a href="{% url 'comment_remove' pk=comment.pk %}">remove</a>
+        <a href="{% url 'comment_approve' pk=comment.pk %}">add</a>
+        
+        {% endif %}
+    {% endif %}
+    {% empty %}
+    <p>No comments here yet :(</p>
+    {% endfor %}
 {% endblock content %}
