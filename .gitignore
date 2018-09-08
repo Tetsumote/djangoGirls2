@@ -9,7 +9,7 @@ tmp/
 local_settings.py
 
 # migration model
-*/migrations/
+
 
 # SQLite database files
 *.sqlite3
