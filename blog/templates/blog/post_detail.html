@@ -3,14 +3,14 @@
 <div class="container">
     <div class="row">
     <div class="col">
-    <a href="{% url 'post_list' %}"><button class="btn btn-outline-secondary">Back</button></a>
+    <a href="{% url 'post_list' %}"><button class="btn btn-outline-secondary mr-1">Back</button></a>
     <div class="post">
     {% if post.published_date %}
         <div class="name">
         {{ post.published_date }}
         </div>
     {% else %}
-        <a href="{% url 'post_publish' pk=post.pk %}"><button class="btn btn-outline-secondary">Publish</button></a>
+        <a href="{% url 'post_publish' pk=post.pk %}"><button class="btn btn-outline-secondary" style="float: right;">Publish</button></a>
     {% endif %}
     <h1 class="font-weight-light">{{ post.title }}</h1>
     <p>{{ post.text|linebreaksbr }}</p>

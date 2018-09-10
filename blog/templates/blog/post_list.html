@@ -3,9 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="blogTitle display-4">Paul's Django Blog</h1> 
-            {% comment %} <small>https://github.com/Tetsumote/vscode-djaneiro</small> {% endcomment %}
-            <div>
+
+            
                 {% for post in posts %}
                     
                     <h4><a href="{% url 'post_detail' pk=post.pk %}" class="font-weight-light">{{ post.title }} </a><small> | published: {{ post.published_date }}</small></h4>
@@ -14,7 +13,6 @@
                     <a href="{% url 'post_detail' pk=post.pk %}"><button class="btn btn-sm btn-outline-secondary" style="margin-top:-2rem;">more</button></a>
                     <hr>
                 {% endfor %}
-            </div>
         </div>
     </div>
 </div>

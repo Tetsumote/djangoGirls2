@@ -19,3 +19,9 @@
 .form-group textarea{
     height: 100px;
 }
+.navbar{
+    padding:.5rem 0;
+}
+small{
+    font-weight: 300;
+}

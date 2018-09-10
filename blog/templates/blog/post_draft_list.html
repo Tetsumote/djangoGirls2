@@ -1,8 +1,18 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col">
+    <h1 class="display-4">Draft:</h1>
 {% for post in posts %}
-<p>created: {{post.created_date|date:'d-m-Y'}}</p>
-<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-<p>{{ post.text|truncatechars:200 }}</p>
+
+    <p>created: {{post.created_date|date:'d-m-Y'}}</p>
+    <h4 class="font-weight-light"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
+    <p>{{ post.text|truncatechars:200 }}</p>
+    <hr>
+  
 {% endfor %}
+  </div>
+    </div>
+</div>
 {% endblock content %}
